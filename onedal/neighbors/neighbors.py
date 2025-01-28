@@ -415,33 +415,25 @@ class KNeighborsClassifier(NeighborsBase, ClassifierMixin):
         return params
 
     def _onedal_fit(self, X, y, queue):
-        # gpu_device = queue is not None and queue.sycl_device.is_gpu
-        # if self.effective_metric_ == "euclidean" and not gpu_device:
-        #     params = self._get_daal_params(X)
-        #     if self._fit_method == "brute":
-        #         train_alg = bf_knn_classification_training
+        gpu_device = queue is not None and queue.sycl_device.is_gpu
+        if self.effective_metric_ == "euclidean" and not gpu_device:
+            params = self._get_daal_params(X)
+            if self._fit_method == "brute":
+                train_alg = bf_knn_classification_training
 
-        #     else:
-        #         train_alg = kdtree_knn_classification_training
+            else:
+                train_alg = kdtree_knn_classification_training
 
-        #     return train_alg(**params).compute(X, y).model
+            return train_alg(**params).compute(X, y).model
 
         policy = self._get_policy(queue, X, y)
         X_table, y_table = to_table(X, y, queue=queue)
         params = self._get_onedal_params(X_table, y)
-
-        # Ensure method selection
-        if self._fit_method == "brute":
-            params["method"] = "brute"
-        else:
-            params["method"] = "kd_tree"
-
         train_alg = self._get_backend(
             "neighbors", "classification", "train", policy, params, X_table, y_table
         )
-        
-        return train_alg.model
 
+        return train_alg.model
 
     def _onedal_predict(self, model, X, params, queue):
         if type(self._onedal_model) is kdtree_knn_classification_model:
