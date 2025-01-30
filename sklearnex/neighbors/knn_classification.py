@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ===============================================================================
-
+import numpy as np
 from sklearn.metrics import accuracy_score
 from sklearn.neighbors._classification import (
     KNeighborsClassifier as _sklearn_KNeighborsClassifier,
@@ -98,6 +98,7 @@ class KNeighborsClassifier(KNeighborsDispatchingBase, _sklearn_KNeighborsClassif
             )
 
     def fit(self, X, y):
+        X, y = validate_data(self, X, y, dtype=[np.float64, np.float32], accept_sparse="csr", reset=True)
         dispatch(
             self,
             "fit",
@@ -113,8 +114,7 @@ class KNeighborsClassifier(KNeighborsDispatchingBase, _sklearn_KNeighborsClassif
     @wrap_output_data
     def predict(self, X):
         check_is_fitted(self)
-        if sklearn_check_version("1.0"):
-            self._check_feature_names(X, reset=False)
+        X = validate_data(self, X, dtype=[np.float64, np.float32], accept_sparse="csr", reset=False)
         return dispatch(
             self,
             "predict",
@@ -128,8 +128,7 @@ class KNeighborsClassifier(KNeighborsDispatchingBase, _sklearn_KNeighborsClassif
     @wrap_output_data
     def predict_proba(self, X):
         check_is_fitted(self)
-        if sklearn_check_version("1.0"):
-            self._check_feature_names(X, reset=False)
+        X = validate_data(self, X, dtype=[np.float64, np.float32], accept_sparse="csr", reset=False)
         return dispatch(
             self,
             "predict_proba",
@@ -143,8 +142,7 @@ class KNeighborsClassifier(KNeighborsDispatchingBase, _sklearn_KNeighborsClassif
     @wrap_output_data
     def score(self, X, y, sample_weight=None):
         check_is_fitted(self)
-        if sklearn_check_version("1.0"):
-            self._check_feature_names(X, reset=False)
+        X = validate_data(self, X, dtype=[np.float64, np.float32], accept_sparse="csr", reset=False)
         return dispatch(
             self,
             "score",
@@ -160,8 +158,7 @@ class KNeighborsClassifier(KNeighborsDispatchingBase, _sklearn_KNeighborsClassif
     @wrap_output_data
     def kneighbors(self, X=None, n_neighbors=None, return_distance=True):
         check_is_fitted(self)
-        if sklearn_check_version("1.0") and X is not None:
-            self._check_feature_names(X, reset=False)
+        X = validate_data(self, X, dtype=[np.float64, np.float32], accept_sparse="csr", reset=False)
         return dispatch(
             self,
             "kneighbors",
