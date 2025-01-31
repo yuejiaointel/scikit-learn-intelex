@@ -406,7 +406,7 @@ def call_validate_data(text, estimator, method):
         pytest.skip("onedal backend not used in this function")
 
     validate_data = "validate_data" if sklearn_check_version("1.6") else "_validate_data"
-    
+
     assert (
         validfuncs.count(validate_data) == 1
     ), f"sklearn's {validate_data} should be called"
