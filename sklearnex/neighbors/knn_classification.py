@@ -98,9 +98,6 @@ class KNeighborsClassifier(KNeighborsDispatchingBase, _sklearn_KNeighborsClassif
             )
 
     def fit(self, X, y):
-        X, y = validate_data(
-            self, X, y, dtype=[np.float64, np.float32], accept_sparse="csr", reset=True
-        )
         dispatch(
             self,
             "fit",
@@ -116,9 +113,6 @@ class KNeighborsClassifier(KNeighborsDispatchingBase, _sklearn_KNeighborsClassif
     @wrap_output_data
     def predict(self, X):
         check_is_fitted(self)
-        X = validate_data(
-            self, X, dtype=[np.float64, np.float32], accept_sparse="csr", reset=False
-        )
         return dispatch(
             self,
             "predict",
@@ -132,9 +126,6 @@ class KNeighborsClassifier(KNeighborsDispatchingBase, _sklearn_KNeighborsClassif
     @wrap_output_data
     def predict_proba(self, X):
         check_is_fitted(self)
-        X = validate_data(
-            self, X, dtype=[np.float64, np.float32], accept_sparse="csr", reset=False
-        )
         return dispatch(
             self,
             "predict_proba",
@@ -148,9 +139,6 @@ class KNeighborsClassifier(KNeighborsDispatchingBase, _sklearn_KNeighborsClassif
     @wrap_output_data
     def score(self, X, y, sample_weight=None):
         check_is_fitted(self)
-        X = validate_data(
-            self, X, dtype=[np.float64, np.float32], accept_sparse="csr", reset=False
-        )
         return dispatch(
             self,
             "score",
@@ -166,9 +154,6 @@ class KNeighborsClassifier(KNeighborsDispatchingBase, _sklearn_KNeighborsClassif
     @wrap_output_data
     def kneighbors(self, X=None, n_neighbors=None, return_distance=True):
         check_is_fitted(self)
-        X = validate_data(
-            self, X, dtype=[np.float64, np.float32], accept_sparse="csr", reset=False
-        )
         return dispatch(
             self,
             "kneighbors",
@@ -182,6 +167,9 @@ class KNeighborsClassifier(KNeighborsDispatchingBase, _sklearn_KNeighborsClassif
         )
 
     def _onedal_fit(self, X, y, queue=None):
+        X, y = validate_data(
+            self, X, y, dtype=[np.float64, np.float32], accept_sparse="csr"
+        )
         onedal_params = {
             "n_neighbors": self.n_neighbors,
             "weights": self.weights,
@@ -204,14 +192,23 @@ class KNeighborsClassifier(KNeighborsDispatchingBase, _sklearn_KNeighborsClassif
         self._save_attributes()
 
     def _onedal_predict(self, X, queue=None):
+        X = validate_data(
+            self, X, dtype=[np.float64, np.float32], accept_sparse="csr", reset=False
+        )
         return self._onedal_estimator.predict(X, queue=queue)
 
     def _onedal_predict_proba(self, X, queue=None):
+        X = validate_data(
+            self, X, dtype=[np.float64, np.float32], accept_sparse="csr", reset=False
+        )
         return self._onedal_estimator.predict_proba(X, queue=queue)
 
     def _onedal_kneighbors(
         self, X=None, n_neighbors=None, return_distance=True, queue=None
     ):
+        X = validate_data(
+            self, X, dtype=[np.float64, np.float32], accept_sparse="csr", reset=False
+        )
         return self._onedal_estimator.kneighbors(
             X, n_neighbors, return_distance, queue=queue
         )
