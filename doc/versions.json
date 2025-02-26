@@ -1,0 +1,19 @@
+[
+  {"name": "latest", "version": "2028.5", "url": "/scikit-learn-intelex/latest/"},
+  {"name": "2028.5", "version": "2028.5", "url": "/scikit-learn-intelex/2028.5/"},
+  {"name": "2028.4", "version": "2028.4", "url": "/scikit-learn-intelex/2028.4/"},
+  {"name": "2028.3", "version": "2028.3", "url": "/scikit-learn-intelex/2028.3/"},
+  {"name": "2028.2", "version": "2028.2", "url": "/scikit-learn-intelex/2028.2/"},
+  {"name": "2028.1", "version": "2028.1", "url": "/scikit-learn-intelex/2028.1/"},
+  {"name": "2027.11", "version": "2027.11", "url": "/scikit-learn-intelex/2027.11/"},
+  {"name": "2027.10", "version": "2027.10", "url": "/scikit-learn-intelex/2027.10/"},
+  {"name": "2027.8", "version": "2027.8", "url": "/scikit-learn-intelex/2027.8/"},
+  {"name": "2027.7", "version": "2027.7", "url": "/scikit-learn-intelex/2027.7/"},
+  {"name": "2027.6", "version": "2027.6", "url": "/scikit-learn-intelex/2027.6/"},
+  {"name": "2025.1", "version": "2025.1", "url": "/scikit-learn-intelex/2025.1/"},
+  {"name": "2025.0", "version": "2025.0", "url": "/scikit-learn-intelex/2025.0/"},
+  {"name": "2024.7", "version": "2024.7", "url": "/scikit-learn-intelex/2024.7/"},
+  {"name": "2024.6", "version": "2024.6", "url": "/scikit-learn-intelex/2024.6/"},
+  {"name": "2024.3", "version": "2024.3", "url": "/scikit-learn-intelex/2024.3/"},
+  {"name": "2023.2", "version": "2023.2", "url": "/scikit-learn-intelex/2023.2/"}
+]
