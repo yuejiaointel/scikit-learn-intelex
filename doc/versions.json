@@ -1,5 +1,6 @@
 [
-  {"name": "latest", "version": "2028.5", "url": "/scikit-learn-intelex/latest/"},
+  {"name": "latest", "version": "2028.10", "url": "/scikit-learn-intelex/latest/"},
+  {"name": "2028.10", "version": "2028.10", "url": "/scikit-learn-intelex/2028.10/"},
   {"name": "2028.5", "version": "2028.5", "url": "/scikit-learn-intelex/2028.5/"},
   {"name": "2028.4", "version": "2028.4", "url": "/scikit-learn-intelex/2028.4/"},
   {"name": "2028.3", "version": "2028.3", "url": "/scikit-learn-intelex/2028.3/"},
