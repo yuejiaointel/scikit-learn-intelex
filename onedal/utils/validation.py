@@ -21,6 +21,9 @@ from numbers import Integral
 import numpy as np
 from scipy import sparse as sp
 
+from onedal.common._backend import BackendFunction
+from onedal.utils import _sycl_queue_manager as QM
+
 if np.lib.NumpyVersion(np.__version__) >= np.lib.NumpyVersion("2.0.0a0"):
     # numpy_version >= 2.0
     from numpy.exceptions import VisibleDeprecationWarning
@@ -34,8 +37,7 @@ from sklearn.utils.validation import check_array
 from daal4py.sklearn.utils.validation import (
     _assert_all_finite as _daal4py_assert_all_finite,
 )
-from onedal import _backend
-from onedal.common._policy import _get_policy
+from onedal import _default_backend as backend
 from onedal.datatypes import to_table
 
 
@@ -437,18 +439,22 @@ def _is_csr(x):
 
 
 def _assert_all_finite(X, allow_nan=False, input_name=""):
-    policy = _get_policy(None, X)
+    backend_method = BackendFunction(
+        backend.finiteness_checker.compute.compute, backend, "compute", no_policy=False
+    )
     X_t = to_table(X)
     params = {
         "fptype": X_t.dtype,
         "method": "dense",
         "allow_nan": allow_nan,
     }
-    if not _backend.finiteness_checker.compute.compute(policy, params, X_t).finite:
-        type_err = "infinity" if allow_nan else "NaN, infinity"
-        padded_input_name = input_name + " " if input_name else ""
-        msg_err = f"Input {padded_input_name}contains {type_err}."
-        raise ValueError(msg_err)
+    with QM.manage_global_queue(None, X):
+        # Must use the queue provided by X
+        if not backend_method(params, X_t).finite:
+            type_err = "infinity" if allow_nan else "NaN, infinity"
+            padded_input_name = input_name + " " if input_name else ""
+            msg_err = f"Input {padded_input_name}contains {type_err}."
+            raise ValueError(msg_err)
 
 
 def assert_all_finite(
@@ -468,6 +474,6 @@ def is_contiguous(X):
     if hasattr(X, "flags"):
         return X.flags["C_CONTIGUOUS"] or X.flags["F_CONTIGUOUS"]
     elif hasattr(X, "__dlpack__"):
-        return _backend.dlpack_memory_order(X) is not None
+        return backend.dlpack_memory_order(X) is not None
     else:
         return False
