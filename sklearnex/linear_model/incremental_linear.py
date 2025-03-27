@@ -42,7 +42,12 @@ else:
 from onedal.common.hyperparameters import get_hyperparameters
 
 from .._device_offload import dispatch, wrap_output_data
-from .._utils import ExtensionEstimator, PatchingConditionsChain, register_hyperparameters
+from .._utils import (
+    ExtensionEstimator,
+    PatchingConditionsChain,
+    _add_inc_serialization_note,
+    register_hyperparameters,
+)
 
 
 @register_hyperparameters(
@@ -105,12 +110,7 @@ class IncrementalLinearRegression(
     n_features_in_ : int
         Number of features seen during ``fit`` or ``partial_fit``.
 
-    Note
-    ----
-    Serializing instances of this class will trigger a forced finalization of calculations.
-    Since finalize_fit can't be dispatched without directly provided queue
-    and the dispatching policy can't be serialized, the computation is finalized
-    during serialization call and the policy is not saved in serialized data.
+    %incremental_serialization_note%
 
     Examples
     --------
@@ -131,6 +131,8 @@ class IncrementalLinearRegression(
     >>> inclr.intercept_
     np.array(0.)
     """
+
+    __doc__ = _add_inc_serialization_note(__doc__)
 
     _onedal_incremental_linear = staticmethod(onedal_IncrementalLinearRegression)
 

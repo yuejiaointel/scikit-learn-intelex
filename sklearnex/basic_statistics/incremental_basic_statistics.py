@@ -27,7 +27,11 @@ from onedal.basic_statistics import (
 
 from .._config import get_config
 from .._device_offload import dispatch
-from .._utils import ExtensionEstimator, PatchingConditionsChain
+from .._utils import (
+    ExtensionEstimator,
+    PatchingConditionsChain,
+    _add_inc_serialization_note,
+)
 
 if sklearn_check_version("1.2"):
     from sklearn.utils._param_validation import Interval, StrOptions
@@ -106,15 +110,10 @@ class IncrementalBasicStatistics(ExtensionEstimator, BaseEstimator):
 
     Note
     ----
-    Serializing instances of this class will trigger a forced finalization of calculations.
-    Since finalize_fit can't be dispatched without directly provided queue
-    and the dispatching policy can't be serialized, the computation is finalized
-    during serialization call and the policy is not saved in serialized data.
-
-    Note
-    ----
     Names of attributes without the trailing underscore are
     supported currently but deprecated in 2025.1 and will be removed in 2026.0
+
+    %incremental_serialization_note%
 
     Examples
     --------
@@ -134,6 +133,8 @@ class IncrementalBasicStatistics(ExtensionEstimator, BaseEstimator):
     >>> incbs.max_
     np.array([3., 4.])
     """
+
+    __doc__ = _add_inc_serialization_note(__doc__)
 
     _onedal_incremental_basic_statistics = staticmethod(onedal_IncrementalBasicStatistics)
 
