@@ -30,6 +30,7 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
+import re
 import sys
 
 # sys.path.insert(0, os.path.abspath("../"))
@@ -263,3 +264,13 @@ todo_include_todos = True
 # not found 404 page
 
 notfound_urls_prefix = "/scikit-learn-intelex/"
+
+# Any link matching these regexes will be skipped by linkcheck
+linkcheck_ignore = [
+    re.compile(r"https://github\.com/.+"),  # Avoid rate error
+    re.compile(r"https://.*intel\.com/.+"),  # Avoid permission error
+]
+
+# Speed up link-check and fail faster
+linkcheck_timeout = 10
+linkcheck_workers = 8
