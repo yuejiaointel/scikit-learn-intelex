@@ -19,12 +19,11 @@ on:
   push:
     tags:
       - '[0-9][0-9][0-9][0-9]\.[0-9][0-9]?\.[0-9]' # Trigger on tag pushes
-      - '[0-9][0-9][0-9][0-9]\.[0-9][0-9]?' # Not full regex supported
 
 permissions:
   contents: read
-  pages: write      # This permission is required for GitHub Pages deployment
-  id-token: write   # This permission is required for GitHub Pages deployment
+  pages: write
+  id-token: write
   
 jobs:
   build-docs:
@@ -91,23 +90,10 @@ jobs:
       run: |
         mkdir -p _site
         
-        # Get other versions on gh-pages
-        if git ls-remote --heads origin gh-pages; then
-          mkdir -p /tmp/gh-pages
-          git worktree add --detach /tmp/gh-pages
-          cd /tmp/gh-pages
-          git fetch origin gh-pages
-          git checkout origin/gh-pages
-          
-          # Copy existing content to _site
-          cd $GITHUB_WORKSPACE
-          cp -R /tmp/gh-pages/* _site/ 2>/dev/null || true
-          
-          # Clean up
-          git worktree remove --force /tmp/gh-pages
-        fi
+        # sync only new version folders from gh-pages into _site
+        rsync -av --ignore-existing gh-pages/ _site/
         
-        # Copy the new version to _site
+        # Copy the new built version to _site
         mkdir -p _site/$SHORT_DOC_VERSION
         cp -R doc/_build/scikit-learn-intelex/$SHORT_DOC_VERSION/* _site/$SHORT_DOC_VERSION/
         
