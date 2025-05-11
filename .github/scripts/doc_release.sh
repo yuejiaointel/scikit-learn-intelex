@@ -23,49 +23,37 @@ if [ ! -d "$BUILD_DIR" ]; then
     exit 1
 fi
 
-# Copy built documentation to a temp location
-DEPLOY_DIR="/tmp/gh-pages-deploy"
-mkdir -p "$DEPLOY_DIR"
-cp -R "$BUILD_DIR"/* "$DEPLOY_DIR"
-ls $DEPLOY_DIR
+mkdir -p _site
+        
+# sync only new version folders from gh-pages into _site
+rsync -av --ignore-existing gh-pages/ _site/
 
-# Checkout gh-pages branch
-if ! git checkout gh-pages; then
-    echo "::error:: Could not checkout gh-pages branch!"
-    exit 1
-fi
+# Copy the new built version to _site
+mkdir -p _site/$SHORT_DOC_VERSION
+cp -R doc/_build/scikit-learn-intelex/$SHORT_DOC_VERSION/* _site/$SHORT_DOC_VERSION/
 
-# Move the new versioned folder to the correct location
-rm -Rf latest
-cp -R "$DEPLOY_DIR/$SHORT_DOC_VERSION" "$SHORT_DOC_VERSION"
-cp -R "$DEPLOY_DIR/$SHORT_DOC_VERSION" latest
-cp "$DEPLOY_DIR/index.html" .
-if ! diff -r "$SHORT_DOC_VERSION" latest > /dev/null; then
-    echo "::error: Content mismatch between $SHORT_DOC_VERSION and latest directories"
-    echo "Differences found:"
-    diff -r "$SHORT_DOC_VERSION" latest
-    exit 1
-fi
+# Update latest
+rm -rf _site/latest
+mkdir -p _site/latest
+cp -R doc/_build/scikit-learn-intelex/$SHORT_DOC_VERSION/* _site/latest/
 
-# Generate versions.json by scanning for year.month folders
-rm -f doc/versions.json
-mkdir -p doc
-echo "[" > doc/versions.json
+# Copy index.html
+cp doc/_build/scikit-learn-intelex/index.html _site/
+
+# Generate versions.json
+mkdir -p _site/doc
+echo "[" > _site/doc/versions.json
 # Add latest entry first
-echo '  {"name": "latest", "version": "'$SHORT_DOC_VERSION'", "url": "/scikit-learn-intelex/latest/"},' >> doc/versions.json
+echo '  {"name": "latest", "version": "'$SHORT_DOC_VERSION'", "url": "/scikit-learn-intelex/latest/"},' >> _site/doc/versions.json
 # Add all year.month folders
-for version in $(ls -d [0-9][0-9][0-9][0-9].[0-9]* 2>/dev/null || true); do
-  echo '  {"name": "'$version'", "version": "'$version'", "url": "/scikit-learn-intelex/'$version'/"},'
-done | sort -rV >> doc/versions.json
+for version in $(ls -d _site/[0-9][0-9][0-9][0-9].[0-9]* 2>/dev/null || true); do
+    version=$(basename "$version")
+    echo '  {"name": "'$version'", "version": "'$version'", "url": "/scikit-learn-intelex/'$version'/"},'
+done | sort -rV >> _site/doc/versions.json
 # Remove trailing comma and close array
-sed -i '$ s/,$//' doc/versions.json
-echo "]" >> doc/versions.json
-cat doc/versions.json
+sed -i '$ s/,$//' _site/doc/versions.json
+echo "]" >> _site/doc/versions.json
 
-# Commit and push changes
-git add -A "$SHORT_DOC_VERSION"
-git add -A latest
-git add doc/versions.json
-git add index.html
-git commit . -m "Automatic doc update for version $DOC_VERSION"
-git push origin gh-pages
+# Display the content for verification
+ls -la _site/
+cat _site/doc/versions.json
