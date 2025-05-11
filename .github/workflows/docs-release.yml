@@ -39,7 +39,7 @@ jobs:
         fetch-depth: 0  # Ensures all tags are fetched
 
     - name: Set Up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v4
       with:
         python-version: "3.13"
 
