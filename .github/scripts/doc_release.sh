@@ -25,17 +25,17 @@ fi
 
 mkdir -p _site
         
-# Check if gh-pages branch exists in the remote repository
-if git ls-remote --heads origin gh-pages | grep -q gh-pages; then
-    echo "gh-pages branch exists in remote, fetching it..."    
-    mkdir -p gh-pages
-    git fetch origin gh-pages:refs/remotes/origin/gh-pages
-    git worktree add gh-pages origin/gh-pages
-else
-    mkdir -p gh-pages
-fi
-# sync only new version folders from gh-pages into _site
-rsync -av --ignore-existing gh-pages/ _site/
+# # Check if gh-pages branch exists in the remote repository
+# if git ls-remote --heads origin gh-pages | grep -q gh-pages; then
+#     echo "gh-pages branch exists in remote, fetching it..."    
+#     mkdir -p gh-pages
+#     git fetch origin gh-pages:refs/remotes/origin/gh-pages
+#     git worktree add gh-pages origin/gh-pages
+# else
+#     mkdir -p gh-pages
+# fi
+# # sync only new version folders from gh-pages into _site
+# rsync -av --ignore-existing gh-pages/ _site/
 
 # Copy the new built version to _site
 mkdir -p _site/$SHORT_DOC_VERSION
