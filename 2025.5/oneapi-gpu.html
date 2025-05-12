@@ -1593,8 +1593,8 @@
   <section id="oneapi-and-gpu-support-in-sklearnex">
 <span id="oneapi-gpu"></span><h1>oneAPI and GPU support in Extension for Scikit-learn*<a class="headerlink" href="#oneapi-and-gpu-support-in-sklearnex" title="Permalink to this heading"></a></h1>
 <p>Extension for Scikit-learn* can execute computations on different devices (CPUs, GPUs) through the SYCL framework in oneAPI.</p>
-<p>The device used for computations can be easily controlled through the target offloading functionality (e.g. through <code class="docutils literal notranslate"><span class="pre">sklearnex.config_context(target_offload=&quot;gpu&quot;)</span></code> - see rest of this page for more details), but for finer-grained controlled (e.g. operating on arrays that are already in a given device’s memory), it can also interact with objects from package <a class="reference external" href="https://intelpython.github.io/dpctl/latest/index.html" title="(in Data Parallel Control (dpctl) v0.20.0dev0+158.g8dcc44fe83)"><span class="xref std std-doc">dpctl</span></a>, which offers a Python interface over SYCL concepts such as devices, queues, and USM (unified shared memory) arrays.</p>
-<p>While not strictly required, package <a class="reference external" href="https://intelpython.github.io/dpctl/latest/index.html" title="(in Data Parallel Control (dpctl) v0.20.0dev0+158.g8dcc44fe83)"><span class="xref std std-doc">dpctl</span></a> is recommended for a better experience on GPUs.</p>
+<p>The device used for computations can be easily controlled through the target offloading functionality (e.g. through <code class="docutils literal notranslate"><span class="pre">sklearnex.config_context(target_offload=&quot;gpu&quot;)</span></code> - see rest of this page for more details), but for finer-grained controlled (e.g. operating on arrays that are already in a given device’s memory), it can also interact with objects from package <a class="reference external" href="https://intelpython.github.io/dpctl/latest/index.html" title="(in Data Parallel Control (dpctl) v0.20.0dev0+189.g3aff6ca341)"><span class="xref std std-doc">dpctl</span></a>, which offers a Python interface over SYCL concepts such as devices, queues, and USM (unified shared memory) arrays.</p>
+<p>While not strictly required, package <a class="reference external" href="https://intelpython.github.io/dpctl/latest/index.html" title="(in Data Parallel Control (dpctl) v0.20.0dev0+189.g3aff6ca341)"><span class="xref std std-doc">dpctl</span></a> is recommended for a better experience on GPUs.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Be aware that GPU usage requires non-Python dependencies on your system, such as the <a class="reference external" href="https://www.intel.com/content/www/us/en/developer/articles/system-requirements/intel-oneapi-dpcpp-system-requirements.html">Intel(R) GPGPU Drivers</a>.</p>
@@ -1630,7 +1630,7 @@
 <ol class="arabic">
 <li><p>The <code class="code docutils literal notranslate"><span class="pre">target_offload</span></code> argument (in <code class="docutils literal notranslate"><span class="pre">config_context</span></code> and in <code class="docutils literal notranslate"><span class="pre">set_config</span></code> / <code class="docutils literal notranslate"><span class="pre">get_config</span></code>)
 can be used to set the device primarily used to perform computations. Accepted data types are
-<code class="code docutils literal notranslate"><span class="pre">str</span></code> and <a class="reference external" href="https://intelpython.github.io/dpctl/latest/api_reference/dpctl/generated/dpctl.SyclQueue.html#dpctl.SyclQueue" title="(in Data Parallel Control (dpctl) v0.20.0dev0+158.g8dcc44fe83)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dpctl.SyclQueue</span></code></a>. Strings must match to device names recognized by
+<code class="code docutils literal notranslate"><span class="pre">str</span></code> and <a class="reference external" href="https://intelpython.github.io/dpctl/latest/api_reference/dpctl/generated/dpctl.SyclQueue.html#dpctl.SyclQueue" title="(in Data Parallel Control (dpctl) v0.20.0dev0+189.g3aff6ca341)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dpctl.SyclQueue</span></code></a>. Strings must match to device names recognized by
 the SYCL* device filter selector - for example, <code class="docutils literal notranslate"><span class="pre">&quot;gpu&quot;</span></code>. If passing <code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code>,
 the device will be deduced from the location of the input data. Examples:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearnex</span> <span class="kn">import</span> <span class="n">config_context</span>
@@ -1666,7 +1666,7 @@ call <code class="code docutils literal notranslate"><span class="pre">sklearnex
 are always patched after the <code class="code docutils literal notranslate"><span class="pre">sklearnex.patch_sklearn()</span></code> call.</p>
 </div>
 <ul>
-<li><p>Pass input data as <a class="reference external" href="https://intelpython.github.io/dpctl/latest/api_reference/dpctl/generated/dpctl.tensor.usm_ndarray.html#dpctl.tensor.usm_ndarray" title="(in Data Parallel Control (dpctl) v0.20.0dev0+158.g8dcc44fe83)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dpctl.tensor.usm_ndarray</span></code></a> to the algorithm.</p>
+<li><p>Pass input data as <a class="reference external" href="https://intelpython.github.io/dpctl/latest/api_reference/dpctl/generated/dpctl.tensor.usm_ndarray.html#dpctl.tensor.usm_ndarray" title="(in Data Parallel Control (dpctl) v0.20.0dev0+189.g3aff6ca341)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dpctl.tensor.usm_ndarray</span></code></a> to the algorithm.</p>
 <p>The computation will run on the device where the input data is
 located, and the result will be returned as <code class="code docutils literal notranslate"><span class="pre">usm_ndarray</span></code> to the same
 device.</p>
@@ -1719,7 +1719,7 @@ in the same context or absence of context. For example, a model whose <code clas
   <hr/>
 
   <div role="contentinfo">
-<jinja2.runtime.BlockReference object at 0x7fef7c409990>
+<jinja2.runtime.BlockReference object at 0x7f658de68b10>
 <a href=
     "https://www.intel.com/content/www/us/en/privacy/intel-cookie-notice.html" data-cookie-notice="true">
     Cookies
