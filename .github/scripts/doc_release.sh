@@ -80,9 +80,10 @@ ls -la _site/
 cat _site/doc/versions.json
 
 ##### ARCHIVE NEW VERSION #####
-STORAGE_BRANCH="doc_archive"
 echo "Archiving version $SHORT_DOC_VERSION to branch $STORAGE_BRANCH..."
-# Save current branch
+STORAGE_BRANCH="doc_archive"
+git config user.name "github-actions[bot]"
+git config user.email "github-actions[bot]@users.noreply.github.com"
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 # Check if storage branch exists
@@ -105,12 +106,8 @@ cp -R _site/$SHORT_DOC_VERSION/* $SHORT_DOC_VERSION/
 
 # Commit & push
 git add $SHORT_DOC_VERSION
-if ! git diff --staged --quiet; then
-    git commit -m "Archive docs version $SHORT_DOC_VERSION"
-    git push origin $STORAGE_BRANCH
-else
-    echo "No changes to archive for $SHORT_DOC_VERSION"
-fi
+git commit -m "Archive docs version $SHORT_DOC_VERSION"
+git push origin $STORAGE_BRANCH
 
 # Return to original branch
 git checkout $CURRENT_BRANCH
