@@ -80,33 +80,37 @@ ls -la _site/
 cat _site/doc/versions.json
 
 ##### ARCHIVE NEW VERSION #####
-ARCHIVE_WORKTREE="archive"
 STORAGE_BRANCH="doc_archive"
 echo "Archiving version $SHORT_DOC_VERSION to branch $STORAGE_BRANCH..."
-# Fetch or create archive branch
+# Save current branch
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# Check if storage branch exists
 if git ls-remote --heads origin "$STORAGE_BRANCH" | grep -q "$STORAGE_BRANCH"; then
-    git fetch origin $STORAGE_BRANCH:$STORAGE_BRANCH
+    echo "Storage branch exists, fetching it..."
+    git fetch origin $STORAGE_BRANCH
+    git checkout $STORAGE_BRANCH
 else
-    git branch --orphan $STORAGE_BRANCH
+    echo "Creating new storage branch..."
+    # Create an empty orphan branch
+    git checkout --orphan $STORAGE_BRANCH
+    git rm -rf .
+    git commit --allow-empty -m "Initialize doc archive branch"
+    git push origin $STORAGE_BRANCH
 fi
 
-git worktree add $ARCHIVE_WORKTREE $STORAGE_BRANCH
-
-mkdir -p $ARCHIVE_WORKTREE/$SHORT_DOC_VERSION
-cp -R _site/$SHORT_DOC_VERSION/* $ARCHIVE_WORKTREE/$SHORT_DOC_VERSION/
+# Copy files to archive
+mkdir -p $SHORT_DOC_VERSION
+cp -R _site/$SHORT_DOC_VERSION/* $SHORT_DOC_VERSION/
 
 # Commit & push
-pushd $ARCHIVE_WORKTREE >/dev/null
-  git config user.name "github-actions[bot]"
-  git config user.email "github-actions[bot]@users.noreply.github.com"
-  git add $SHORT_DOC_VERSION
-  if ! git diff --staged --quiet; then
+git add $SHORT_DOC_VERSION
+if ! git diff --staged --quiet; then
     git commit -m "Archive docs version $SHORT_DOC_VERSION"
     git push origin $STORAGE_BRANCH
-  else
+else
     echo "No changes to archive for $SHORT_DOC_VERSION"
-  fi
-popd >/dev/null
+fi
 
-# Cleanup archive worktree
-git worktree remove $ARCHIVE_WORKTREE --force
+# Return to original branch
+git checkout $CURRENT_BRANCH
