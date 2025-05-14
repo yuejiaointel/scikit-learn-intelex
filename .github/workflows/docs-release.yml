@@ -91,7 +91,7 @@ jobs:
         chmod +x .github/scripts/doc_release.sh
         ./.github/scripts/doc_release.sh
 
-    - name: Upload artifact
+    - name: Upload artifact for GitHub Pages
       uses: actions/upload-pages-artifact@v3
       with:
         path: '_site'

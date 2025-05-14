@@ -15,7 +15,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #===============================================================================
-
 # Ensure the build directory exists
 BUILD_DIR="doc/_build/scikit-learn-intelex"
 if [ ! -d "$BUILD_DIR" ]; then
@@ -25,6 +24,29 @@ fi
 
 rm -rf _site
 mkdir -p _site
+STORAGE_BRANCH="doc_archive"
+
+##### Get archived docs from tar.gz artifacts #####
+if git ls-remote --heads origin $STORAGE_BRANCH | grep -q $STORAGE_BRANCH; then
+    echo "$STORAGE_BRANCH branch exists, checking for archived artifacts..."
+    git fetch origin $STORAGE_BRANCH:$STORAGE_BRANCH
+    git worktree add archive_sync $STORAGE_BRANCH
+
+    # Get most recent tar.gz in archive branch
+    LATEST_ARTIFACT=$(ls -t archive_sync/*.tar.gz 2>/dev/null | head -n 1)
+    if [ -n "$LATEST_ARTIFACT" ] && [ -f "$LATEST_ARTIFACT" ]; then
+        echo "Extracting most recent archived documentation from $LATEST_ARTIFACT..."
+        mkdir -p temp_extract
+        tar -xzf "$LATEST_ARTIFACT" -C temp_extract
+        rsync -av --ignore-existing temp_extract/ _site/
+        rm -rf temp_extract
+    else
+        echo "No tar.gz artifacts found in $STORAGE_BRANCH branch."
+    fi
+    git worktree remove archive_sync --force
+else
+    echo "$STORAGE_BRANCH branch does not exist, skipping archive sync."
+fi
 
 ##### Get potential new docs from gh-pages #####
 if git ls-remote --heads origin gh-pages | grep -q gh-pages; then
@@ -35,17 +57,6 @@ if git ls-remote --heads origin gh-pages | grep -q gh-pages; then
     git worktree remove gh-pages --force
 else
     echo "gh-pages branch does not exist, skipping sync."
-fi
-
-##### Get archived docs #####
-if git ls-remote --heads origin doc_archive | grep -q doc_archive; then
-    echo "doc_archive branch exists, syncing archived versions..."
-    git fetch origin doc_archive:doc_archive
-    git worktree add archive_sync doc_archive
-    rsync -av --ignore-existing archive_sync/ _site/
-    git worktree remove archive_sync --force
-else
-    echo "doc_archive branch does not exist, skipping archive sync."
 fi
 
 ##### Prepare new doc #####
@@ -63,28 +74,32 @@ cp doc/_build/scikit-learn-intelex/index.html _site/
 
 # Generate versions.json
 mkdir -p _site/doc
-echo "[" > _site/doc/versions.json
+echo "[" > _site/versions.json
 # Add latest entry first
-echo '  {"name": "latest", "version": "'$SHORT_DOC_VERSION'", "url": "/scikit-learn-intelex/latest/"},' >> _site/doc/versions.json
+echo '  {"name": "latest", "version": "'$SHORT_DOC_VERSION'", "url": "/scikit-learn-intelex/latest/"},' >> _site/versions.json
 # Add all year.month folders
 for version in $(ls -d _site/[0-9][0-9][0-9][0-9].[0-9]* 2>/dev/null || true); do
     version=$(basename "$version")
     echo '  {"name": "'$version'", "version": "'$version'", "url": "/scikit-learn-intelex/'$version'/"},'
-done | sort -rV >> _site/doc/versions.json
+done | sort -rV >> _site/versions.json
 # Remove trailing comma and close array
-sed -i '$ s/,$//' _site/doc/versions.json
-echo "]" >> _site/doc/versions.json
+sed -i '$ s/,$//' _site/versions.json
+echo "]" >> _site/versions.json
 
 # Display the content for verification
 ls -la _site/
-cat _site/doc/versions.json
+cat _site/versions.json
 
-##### ARCHIVE NEW VERSION #####
+##### Archive Current state to a tar.gz #####
 echo "Archiving version $SHORT_DOC_VERSION to branch $STORAGE_BRANCH..."
-STORAGE_BRANCH="doc_archive"
 git config user.name "github-actions[bot]"
 git config user.email "github-actions[bot]@users.noreply.github.com"
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# Create a tar.gz artifact of the entire _site directory
+ARTIFACT_NAME="doc-site-${SHORT_DOC_VERSION}.tar.gz"
+echo "Creating documentation artifact: $ARTIFACT_NAME"
+tar -czf "$ARTIFACT_NAME" -C _site .
 
 # Check if storage branch exists
 if git ls-remote --heads origin "$STORAGE_BRANCH" | grep -q "$STORAGE_BRANCH"; then
@@ -100,13 +115,12 @@ else
     git push origin $STORAGE_BRANCH
 fi
 
-# Copy files to archive
-mkdir -p $SHORT_DOC_VERSION
-cp -R _site/$SHORT_DOC_VERSION/* $SHORT_DOC_VERSION/
+# Move the artifact to the storage branch
+mv "$ARTIFACT_NAME" .
 
 # Commit & push
-git add $SHORT_DOC_VERSION
-git commit -m "Archive docs version $SHORT_DOC_VERSION"
+git add "$ARTIFACT_NAME"
+git commit -m "Archive complete documentation site for version $SHORT_DOC_VERSION"
 git push origin $STORAGE_BRANCH
 
 # Return to original branch
