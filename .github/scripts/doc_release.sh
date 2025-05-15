@@ -89,6 +89,7 @@ echo "]" >> _site/versions.json
 # Display the content for verification
 ls -la _site/
 cat _site/versions.json
+git checkout -- .github/scripts/doc_release.sh
 
 ##### Archive Current state to a tar.gz #####
 echo "Archiving version $SHORT_DOC_VERSION to branch $STORAGE_BRANCH..."
