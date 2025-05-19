@@ -105,6 +105,8 @@ else
     echo "Creating new storage branch with all current versions..."
     # Create an empty orphan branch
     git checkout --orphan $STORAGE_BRANCH
+    git rm -rf .
+    
     # Copy only version folders
     for version_dir in $(find $TEMP_DOC_FOLDER -maxdepth 1 -type d -name "[0-9][0-9][0-9][0-9].[0-9]*" 2>/dev/null); do
         version=$(basename "$version_dir")
