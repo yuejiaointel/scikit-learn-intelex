@@ -101,7 +101,6 @@ else
     # Create an empty orphan branch
     git checkout --orphan $STORAGE_BRANCH
     git rm -rf .
-    git clean -fdx # Remove untracked files
 
     # Copy only version folders
     for version_dir in $(find $TEMP_DOC_FOLDER -maxdepth 1 -type d -name "[0-9][0-9][0-9][0-9].[0-9]*" 2>/dev/null); do
@@ -110,7 +109,8 @@ else
         rsync -av "$version_dir/" $version/
     done
     
-    git add .
+    # Git only add verison folders
+    git add -- [0-9][0-9][0-9][0-9].[0-9]* 
     git commit -m "Initialize doc archive branch with all versions"
 fi
 
