@@ -93,25 +93,23 @@ if git ls-remote --heads origin "$STORAGE_BRANCH" | grep -q "$STORAGE_BRANCH"; t
     
     # Add only the new version directory
     mkdir -p $SHORT_DOC_VERSION
-    rsync -av $TEMP_DOC_FOLDER/$SHORT_DOC_VERSION/ $SHORT_DOC_VERSION/
-    
-    # Commit only the new version
+    rsync -av $TEMP_DOC_FOLDER/$SHORT_DOC_VERSION/ $SHORT_DOC_VERSION/    
     git add $SHORT_DOC_VERSION
     git commit -m "Add documentation for version $SHORT_DOC_VERSION"
 else
     echo "Creating new storage branch with all current versions..."
     # Create an empty orphan branch
     git checkout --orphan $STORAGE_BRANCH
-    git rm -rf .
+    rm -rf *
+    rm -rf .*
     
-    # Copy all version directories
-    for version_dir in $(find $TEMP_DOC_FOLDER -maxdepth 1 -type d -name "[0-9]*.[0-9]*" 2>/dev/null); do
+    # Copy only version folders
+    for version_dir in $(find $TEMP_DOC_FOLDER -maxdepth 1 -type d -name "[0-9][0-9][0-9][0-9].[0-9]*" 2>/dev/null); do
         version=$(basename "$version_dir")
         mkdir -p $version
         rsync -av "$version_dir/" $version/
     done
     
-    # Commit all versions
     git add .
     git commit -m "Initialize doc archive branch with all versions"
 fi
