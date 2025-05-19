@@ -32,7 +32,9 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
+    env:
+      TEMP_DOC_FOLDER: /tmp/_site
+      
     steps:
     - name: Checkout Repository
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -89,8 +91,6 @@ jobs:
 
     - name: Prepare Documentation for Deployment
       run: |
-        TEMP_DOC_FOLDER="/tmp/_site"
-        echo "TEMP_DOC_FOLDER=$TEMP_DOC_FOLDER" >> $GITHUB_ENV
         chmod +x .github/scripts/doc_release.sh
         ./.github/scripts/doc_release.sh
 
