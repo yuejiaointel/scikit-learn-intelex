@@ -16,9 +16,14 @@
 # limitations under the License.
 #===============================================================================
 
-TEMP_DOC_FOLDER="_site"
 BUILD_DIR="doc/_build/scikit-learn-intelex"
 STORAGE_BRANCH="doc_archive"
+
+# Check if TEMP_DOC_FOLDER is set
+if [ -z "$TEMP_DOC_FOLDER" ]; then
+    echo "::error::TEMP_DOC_FOLDER environment variable is not set!"
+    exit 1
+fi
 
 # Ensure the build directory exists
 if [ ! -d "$BUILD_DIR" ]; then
@@ -100,8 +105,6 @@ else
     echo "Creating new storage branch with all current versions..."
     # Create an empty orphan branch
     git checkout --orphan $STORAGE_BRANCH
-    git rm -rf .
-
     # Copy only version folders
     for version_dir in $(find $TEMP_DOC_FOLDER -maxdepth 1 -type d -name "[0-9][0-9][0-9][0-9].[0-9]*" 2>/dev/null); do
         version=$(basename "$version_dir")

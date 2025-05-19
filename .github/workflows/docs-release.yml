@@ -89,13 +89,15 @@ jobs:
 
     - name: Prepare Documentation for Deployment
       run: |
+        TEMP_DOC_FOLDER="/tmp/_site"
+        echo "TEMP_DOC_FOLDER=$TEMP_DOC_FOLDER" >> $GITHUB_ENV
         chmod +x .github/scripts/doc_release.sh
         ./.github/scripts/doc_release.sh
 
     - name: Upload artifact for GitHub Pages
       uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
       with:
-        path: '_site'
+        path: ${{ env.TEMP_DOC_FOLDER }}
 
     - name: Deploy to GitHub Pages
       id: deployment
