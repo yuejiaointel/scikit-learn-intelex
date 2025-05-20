@@ -20,10 +20,6 @@ on:
     tags:
       - '[0-9][0-9][0-9][0-9]\.[0-9][0-9]?\.[0-9]' # Trigger on tag pushes
   workflow_dispatch:
-    inputs:
-      doc_version:
-        description: 'Manual documentation version'
-        required: true
 
 permissions: read-all
 
