@@ -45,7 +45,7 @@ jobs:
     - name: Set Up Python
       uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
       with:
-        python-version: "3.13"
+        python-version: "3.11"
 
     - name: Install System Dependencies
       run: sudo apt-get update && sudo apt-get install -y clang-format pandoc
@@ -73,7 +73,7 @@ jobs:
         git branch
     - name: Install Python Dependencies
       run: |
-        pip install daal-devel impi-devel
+        pip install daal-devel impi-devel scikit-learn
         pip install -r dependencies-dev
         pip install -r requirements-doc.txt
     - name: Build daal4py/sklearnex
