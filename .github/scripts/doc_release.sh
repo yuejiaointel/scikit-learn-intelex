@@ -66,7 +66,7 @@ cp -R doc/_build/scikit-learn-intelex/$SHORT_DOC_VERSION/* $TEMP_DOC_FOLDER/late
 cp doc/_build/scikit-learn-intelex/index.html $TEMP_DOC_FOLDER/
 
 # Generate versions.json
-mkdir -p $TEMP_DOC_FOLDER/doc
+mkdir -p $TEMP_DOC_FOLDER
 echo "[" > $TEMP_DOC_FOLDER/versions.json
 # Add latest entry first
 echo '  {"name": "latest", "version": "'$SHORT_DOC_VERSION'", "url": "/scikit-learn-intelex/latest/"},' >> $TEMP_DOC_FOLDER/versions.json
@@ -106,7 +106,7 @@ else
     # Create an empty orphan branch
     git checkout --orphan $STORAGE_BRANCH
     git rm -rf .
-    
+
     # Copy only version folders
     for version_dir in $(find $TEMP_DOC_FOLDER -maxdepth 1 -type d -name "[0-9][0-9][0-9][0-9].[0-9]*" 2>/dev/null); do
         version=$(basename "$version_dir")
