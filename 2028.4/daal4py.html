@@ -1,0 +1,1192 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>daal4py API Reference &mdash; Extension for Scikit-learn* 2028.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=132153fd" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=a7eda0bf"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script src="_static/version_switcher.js?v=1b8cff92"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tuning Guide" href="guide/acceleration.html" />
+    <link rel="prev" title="About daal4py" href="about_daal4py.html" />
+<script defer type="text/javascript"
+  src="https://www.intel.com/content/dam/www/global/wap/performance-config.js"></script>
+<script type="text/javascript">
+  fetch("/scikit-learn-intelex/versions.json").then(response => response.text()).then(respText => load_versions(respText));
+  // Configure TMS settings
+  var wapLocalCode = 'us-en'; // Dynamically set per localized site, see mapping table for values
+  var wapSection = "scikit-learn"; // WAP team will give you a unique section for your site
+  // Load TMS
+  if (document.location.href.includes("uxlfoundation.github.io/scikit-learn-intelex")) {
+    (function () {
+      var url = 'https://www.intel.com/content/dam/www/global/wap/tms-loader.js'; // WAP file URL
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = url;
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  }
+</script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Extension for Scikit-learn*
+              <img src="_static/uxl-foundation-logo-horizontal-color.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+<div class="version-switcher__container dropdown">
+    <script>
+      current_version = "2028.4"
+      project_name = "scikit-learn-intelex"
+    </script>
+    <div id="version-switcher-button"
+      class="version-switcher__button"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="version-switcher-dropdown"
+      aria-label="Version switcher list"
+      style="display:inline-block;padding-left:10px;padding-right:10px;"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </div>
+    <div id="version-switcher-dropdown"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quick-start.html#compatibility-with-scikit-learn">Compatibility with Scikit-learn*</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick-start.html#integrate-sklearnex">Integrate Extension for Scikit-learn*</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quick-start.html#patching">Patching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick-start.html#global-patching">Global Patching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick-start.html#unpatching">Unpatching</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quick-start.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quick-start.html#install-from-pypi">Install from PyPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick-start.html#install-from-anaconda-cloud">Install from Anaconda* Cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick-start.html#build-from-sources">Build from Sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick-start.html#install-intel-r-ai-tools">Install Intel*(R) AI Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quick-start.html#release-notes">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick-start.html#system-requirements">System Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quick-start.html#hardware-requirements">Hardware Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick-start.html#software-requirements">Software Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick-start.html#memory-requirements">Memory Requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="samples.html">Samples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="samples/knn_mnist.html">k-Nearest Neighbors (kNN) for MNIST dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/knn_mnist.html#Download-the-data">Download the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/knn_mnist.html#Patch-original-Scikit-learn-with-Extension-for-Scikit-learn">Patch original Scikit-learn with Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/knn_mnist.html#Train-the-same-algorithm-with-original-Scikit-learn">Train the same algorithm with original Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples/logistictic_regression_cifar.html">Logistic Regression for Cifar dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/logistictic_regression_cifar.html#Download-the-data">Download the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/logistictic_regression_cifar.html#Patch-original-Scikit-learn-with-Extension-for-Scikit-learn">Patch original Scikit-learn with Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/logistictic_regression_cifar.html#Train-the-same-algorithm-with-original-Scikit-learn">Train the same algorithm with original Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples/svc_adult.html">Support Vector Classification (SVC) for Adult dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/svc_adult.html#Download-the-data">Download the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/svc_adult.html#Patch-original-Scikit-learn-with-Extension-for-Scikit-learn">Patch original Scikit-learn with Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/svc_adult.html#Train-the-same-algorithm-with-original-Scikit-learn">Train the same algorithm with original Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples/random_forest_rain.html">Random Forest Classification on rain in Australia dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/random_forest_rain.html#Download-the-data">Download the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/random_forest_rain.html#Explore-the-data">Explore the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/random_forest_rain.html#Preprocessing">Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/random_forest_rain.html#Patch-original-Scikit-learn-with-Intel®-Extension-for-Scikit-learn">Patch original Scikit-learn with Intel® Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/random_forest_rain.html#Train-the-same-algorithm-with-original-Scikit-learn">Train the same algorithm with original Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/random_forest_rain.html#Comparison">Comparison</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples/ElasticNet.html">ElasticNet for Airlines DepDelay dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/ElasticNet.html#Download-the-data">Download the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/ElasticNet.html#Preprocessing">Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/ElasticNet.html#Patch-original-Scikit-learn-with-Extension-for-Scikit-learn">Patch original Scikit-learn with Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/ElasticNet.html#Train-the-same-algorithm-with-original-Scikit-learn">Train the same algorithm with original Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples/lasso_regression.html">Lasso Regression for YearPredictionMSD dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/lasso_regression.html#Download-the-data">Download the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/lasso_regression.html#Normalize-the-data">Normalize the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/lasso_regression.html#Patch-original-Scikit-learn-with-Extension-for-Scikit-learn">Patch original Scikit-learn with Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/lasso_regression.html#Train-the-same-algorithm-with-original-Scikit-learn">Train the same algorithm with original Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples/linear_regression.html">Linear Regression for YearPredictionMSD dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/linear_regression.html#Download-the-data">Download the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/linear_regression.html#Normalize-the-data">Normalize the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/linear_regression.html#Patch-original-Scikit-learn-with-Extension-for-Scikit-learn">Patch original Scikit-learn with Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/linear_regression.html#Train-the-same-algorithm-with-original-Scikit-learn">Train the same algorithm with original Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples/nusvr_medical_charges.html">Nu-Support Vector Regression (NuSVR) for Medical Charges dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/nusvr_medical_charges.html#Download-the-data">Download the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/nusvr_medical_charges.html#Preprocessing">Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/nusvr_medical_charges.html#Patch-original-Scikit-learn-with-Extension-for-Scikit-learn">Patch original Scikit-learn with Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/nusvr_medical_charges.html#Train-the-same-algorithm-with-original-Scikit-learn">Train the same algorithm with original Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples/random_forest_yolanda.html">Random Forest for Yolanda dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/random_forest_yolanda.html#Download-the-data">Download the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/random_forest_yolanda.html#Patch-original-Scikit-learn-with-Extension-for-Scikit-learn">Patch original Scikit-learn with Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/random_forest_yolanda.html#Train-the-same-algorithm-with-original-Scikit-learn">Train the same algorithm with original Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples/ridge_regression.html">Rigde Regression for Airlines DepDelay dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression.html#Download-the-data">Download the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression.html#Preprocessing">Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression.html#Patch-original-Scikit-learn-with-Extension-for-Scikit-learn">Patch original Scikit-learn with Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression.html#Train-the-same-algorithm-with-original-Scikit-learn">Train the same algorithm with original Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples/ridge_regression_bike_sharing.html">Ridge Regression on New York City Bike Share dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression_bike_sharing.html#Download-the-data">Download the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression_bike_sharing.html#Preprocessing">Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression_bike_sharing.html#Patch-original-Scikit-learn-with-Intel®-Extension-for-Scikit-learn">Patch original Scikit-learn with Intel® Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression_bike_sharing.html#Train-the-same-algorithm-with-original-Scikit-learn">Train the same algorithm with original Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples/ridge_regression_fraud_detection.html">Ridge Regression on IEEE-CIS Fraud Detection dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression_fraud_detection.html#Download-the-data">Download the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression_fraud_detection.html#Preprocessing">Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression_fraud_detection.html#Patch-original-Scikit-learn-with-Intel®-Extension-for-Scikit-learn">Patch original Scikit-learn with Intel® Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression_fraud_detection.html#Train-the-same-algorithm-with-original-Scikit-learn">Train the same algorithm with original Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples/ridge_regression_higgs.html">Ridge Regression on Higgs dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression_higgs.html#Download-the-data">Download the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression_higgs.html#Preprocessing">Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression_higgs.html#Patch-original-Scikit-learn-with-Intel®-Extension-for-Scikit-learn">Patch original Scikit-learn with Intel® Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/ridge_regression_higgs.html#Train-the-same-algorithm-with-original-Scikit-learn">Train the same algorithm with original Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples/kmeans.html">Kmeans for spoken arabic digit dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/kmeans.html#Download-the-data">Download the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/kmeans.html#Preprocessing">Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/kmeans.html#Patch-original-Scikit-learn-with-Extension-for-Scikit-learn">Patch original Scikit-learn with Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/kmeans.html#Train-the-same-algorithm-with-original-Scikit-learn">Train the same algorithm with original Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples/dbscan.html">DBSCAN for spoken arabic digit dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/dbscan.html#Download-the-data">Download the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/dbscan.html#Preprocessing">Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/dbscan.html#Patch-original-Scikit-learn-with-Extension-for-Scikit-learn">Patch original Scikit-learn with Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/dbscan.html#Train-the-same-algorithm-with-original-Scikit-learn">Train the same algorithm with original Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples/tsne.html">Extension for Scikit-learn TSNE example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples/tsne.html#Generate-the-data">Generate the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/tsne.html#Patch-original-Scikit-learn-with-Extension-for-Scikit-learn">Patch original Scikit-learn with Extension for Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="samples/tsne.html#Plot-embeddings-original-scikit-learn-and-Extension">Plot embeddings original scikit-learn and Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/oneapi-src/oneAPI-samples/tree/master/AI-and-Analytics/Getting-Started-Samples/Intel_Extension_For_SKLearn_GettingStarted">Extension for Scikit-Learn* Getting Started Sample</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/oneapi-src/oneAPI-samples/tree/master/AI-and-Analytics/Features-and-Functionality/Intel_Extension_For_SKLearn_Performance_SVC_Adult">Extension for Scikit-Learn*: SVC for Adult dataset Performance Sample</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kaggle.html">Kaggle Kernels</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kaggle.html#acceleration">Acceleration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kaggle.html#machine-learning-workflows">Machine Learning Workflows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kaggle.html#kaggle-kernels-that-use-scikit-learn-and-sklearnex">Kaggle kernels that use scikit-learn and Extension for Scikit-learn*:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kaggle/classification.html">Classification Tasks</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="kaggle/classification.html#binary-classification">Binary Classification</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kaggle/classification.html#multiclass-classification">MultiClass Classification</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kaggle/classification.html#classification-tasks-in-computer-vision">Classification Tasks in Computer Vision</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kaggle/classification.html#classification-tasks-in-natural-language-processing">Classification Tasks in Natural Language Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="kaggle/regression.html">Regression Tasks</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="kaggle/regression.html#using-a-single-regressor">Using a Single Regressor</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kaggle/regression.html#stacking-regressors">Stacking Regressors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kaggle.html#kaggle-kernels-that-use-automl-with-sklearnex">Kaggle kernels that use AutoML with Extension for Scikit-learn*:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kaggle/automl.html">AutoML Workflows</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="algorithms.html">Supported Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algorithms.html#on-cpu">on CPU</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#classification">Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#regression">Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#clustering">Clustering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#dimensionality-reduction">Dimensionality Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#nearest-neighbors">Nearest Neighbors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#other-tasks">Other Tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms.html#on-gpu">on GPU</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#id1">Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#id2">Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#id3">Clustering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#id4">Dimensionality Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#id5">Nearest Neighbors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#id6">Other Tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms.html#spmd-support">SPMD Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#id8">Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#id9">Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#id10">Clustering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#id11">Dimensionality Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#id12">Nearest Neighbors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html#id13">Other Tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms.html#scikit-learn-tests">Scikit-learn Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oneapi-gpu.html">oneAPI and GPU support in Extension for Scikit-learn*</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="oneapi-gpu.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oneapi-gpu.html#device-offloading">Device offloading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oneapi-gpu.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="distributed-mode.html">SPMD (multi-GPU distributed mode)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributed_daal4py.html">Distributed mode (daal4py, CPU)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="distributed_daal4py.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed_daal4py.html#using-distributed-mode">Using distributed mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed_daal4py.html#supported-algorithms">Supported algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="non-scikit-algorithms.html">Non-Scikit-Learn Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="non_sklearn_d4p.html">Other Non-Scikit-Learn Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_builders.html">Serving GBT models from other libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="model_builders.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_builders.html#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_builders.html#notes-about-computed-results">Notes about computed results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_builders.html#limitations">Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_builders.html#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logistic_model_builder.html">Serving Logistic Regression from Other Libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logistic_model_builder.html#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logistic_model_builder.html#details">Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logistic_model_builder.html#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="input-types.html">Supported input types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="array_api.html">Array API support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="array_api.html#support-for-dpnp-and-dpctl">Support for DPNP and DPCTL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array_api.html#support-for-array-api-compatible-inputs">Support for Array API-compatible inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array_api.html#example-usage">Example usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="array_api.html#dpnp-ndarrays">DPNP ndarrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="array_api.html#dpctl-usm-ndarrays">DPCTL usm_ndarrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="array_api.html#use-of-array-api-strict">Use of <cite>array-api-strict</cite></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="verbose.html">Verbose Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preview.html">Preview Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecation.html">Deprecation Notice</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deprecation.html#macos-support">macOS* Support</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">daal4py</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about_daal4py.html">About daal4py</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="about_daal4py.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="about_daal4py.html#using-daal4py">Using daal4py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="about_daal4py.html#streaming-mode">Streaming mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="about_daal4py.html#distributed-mode">Distributed mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="about_daal4py.html#documentation">Documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">daal4py API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#thread-control">Thread control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mpi-helpers">MPI helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-builders-gbt-and-logreg-serving">Model builders (GBT and LogReg serving)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#classification">Classification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#results-class">Results class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision-forest-classification">Decision Forest Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision-tree-classification">Decision Tree Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gradient-boosted-classification">Gradient Boosted Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#k-nearest-neighbors-knn">k-Nearest Neighbors (kNN)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#brute-force-k-nearest-neighbors-knn">Brute-force k-Nearest Neighbors (kNN)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adaboost-classification">AdaBoost Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#brownboost-classification">BrownBoost Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logitboost-classification">LogitBoost Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stump-weak-learner-classification">Stump Weak Learner Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multinomial-naive-bayes">Multinomial Naive Bayes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#support-vector-machine-svm">Support Vector Machine (SVM)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logistic-regression">Logistic Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#regression">Regression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#decision-forest-regression">Decision Forest Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision-tree-regression">Decision Tree Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gradient-boosted-regression">Gradient Boosted Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linear-regression">Linear Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lasso-regression">LASSO Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ridge-regression">Ridge Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stump-regression">Stump Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#clustering">Clustering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#k-means-clustering">K-Means Clustering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#k-means-initialization">K-Means Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#k-means">K-Means</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dbscan">DBSCAN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gaussian-mixtures">Gaussian Mixtures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#initialization-for-the-gaussian-mixture-model">Initialization for the Gaussian Mixture Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#em-algorithm-for-the-gaussian-mixture-model">EM algorithm for the Gaussian Mixture Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dimensionality-reduction">Dimensionality reduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#principal-component-analysis-pca-transform">Principal Component Analysis (PCA) Transform</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#outlier-detection">Outlier detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#multivariate-outlier-detection">Multivariate Outlier Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#univariate-outlier-detection">Univariate Outlier Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multivariate-bacon-outlier-detection">Multivariate Bacon Outlier Detection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#optimization-solvers">Optimization Solvers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#objective-functions">Objective Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mean-squared-error-algorithm-mse">Mean Squared Error Algorithm (MSE)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#logistic-loss">Logistic Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cross-entropy-loss">Cross-entropy Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sum-of-functions">Sum of Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#iterative-solvers">Iterative Solvers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#stochastic-gradient-descent-algorithm">Stochastic Gradient Descent Algorithm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limited-memory-broyden-fletcher-goldfarb-shanno-algorithm">Limited-Memory Broyden-Fletcher-Goldfarb-Shanno Algorithm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adaptive-subgradient-method">Adaptive Subgradient Method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stochastic-average-gradient-descent">Stochastic Average Gradient Descent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#coordinate-descent">Coordinate Descent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#precomputed-function">Precomputed Function</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#recommender-systems">Recommender systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#association-rules">Association Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implicit-alternating-least-squares-implicit-als">Implicit Alternating Least Squares (implicit ALS)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#covariance-correlation-and-distances">Covariance, correlation, and distances</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cosine-distance-matrix">Cosine Distance Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#correlation-distance-matrix">Correlation Distance Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#correlation-and-variance-covariance-matrices">Correlation and Variance-Covariance Matrices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-pre-processing">Data pre-processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#normalization">Normalization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#z-score">Z-Score</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#min-max">Min-Max</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#statistics">Statistics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#moments-of-low-order">Moments of Low Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quantiles">Quantiles</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#linear-algebra">Linear algebra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cholesky-decomposition">Cholesky Decomposition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qr-decomposition">QR Decomposition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#qr-decomposition-without-pivoting">QR Decomposition (without pivoting)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pivoted-qr-decomposition">Pivoted QR Decomposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#singular-value-decomposition-svd">Singular Value Decomposition (SVD)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#random-number-generation">Random number generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#random-number-engines">Random Number Engines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mt19937">mt19937</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mt2203">mt2203</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mcg59">mcg59</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mrg32k3a">mrg32k3a</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#philox4x32x10">philox4x32x10</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#distributions">Distributions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bernoulli">Bernoulli</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#normal">Normal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#uniform">Uniform</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sorting">Sorting</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Performance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guide/acceleration.html">Tuning Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/acceleration.html#tsne">TSNE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/acceleration.html#random-forest">Random Forest</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Learn</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials &amp; Case Studies</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.html#tutorials">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.html#case-studies">Case Studies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="blogs.html">Medium Blogs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">More</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="support.html#issues">Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">How to Contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contribute.html#licensing">Licensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contribute.html#pull-requests">Pull Requests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#before-contributing-changes">Before Contributing Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contribute.html#code-style">Code Style</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ideas.html">Ideas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ideas.html#implement-covariance-estimators-for-supercomputers">Implement Covariance Estimators for Supercomputers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ideas.html#oracle-approximating-shrinkage-estimator-small">Oracle Approximating Shrinkage Estimator (small)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ideas.html#shrunkcovariance-estimator-small">ShrunkCovariance Estimator (small)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ideas.html#implement-the-preprocessing-estimators-for-supercomputers">Implement the Preprocessing Estimators for Supercomputers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ideas.html#standardscaler-estimator-small">StandardScaler Estimator (small)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ideas.html#maxabsscaler-estimator-small">MaxAbsScaler Estimator (small)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ideas.html#minmaxscaler-estimator-small">MinMaxScaler Estimator (small)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ideas.html#normalizer-estimator-small">Normalizer Estimator (small)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ideas.html#expose-accelerated-kernel-distance-functions">Expose Accelerated Kernel Distance Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ideas.html#sigmoid-kernel-function-small">sigmoid_kernel Function (small)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ideas.html#polynomial-kernel-function-small">polynomial_kernel Function (small)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ideas.html#rbf-kernel-function-small">rbf_kernel Function (small)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Extension for Scikit-learn*</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">daal4py API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/daal4py.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="daal4py-api-reference">
+<span id="daal4py-ref"></span><h1>daal4py API Reference<a class="headerlink" href="#daal4py-api-reference" title="Link to this heading"></a></h1>
+<p>This is the full documentation page for <code class="docutils literal notranslate"><span class="pre">daal4py</span></code> functions and classes. Note that for the most
+part, these are simple wrappers over equivalent functions and methods from the oneAPI Data Analytics Library. See also
+the <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal-interfaces.html">documentation of DAAL interfaces</a> for more details.</p>
+<p>See <a class="reference internal" href="about_daal4py.html#about-daal4py"><span class="std std-ref">About daal4py</span></a> for an example of how to use <code class="docutils literal notranslate"><span class="pre">daal4py</span></code> algorithms.</p>
+<section id="thread-control">
+<h2>Thread control<a class="headerlink" href="#thread-control" title="Link to this heading"></a></h2>
+<p>Documentation for functions that control the global thread settings in <code class="docutils literal notranslate"><span class="pre">daal4py</span></code>:</p>
+</section>
+<section id="mpi-helpers">
+<h2>MPI helpers<a class="headerlink" href="#mpi-helpers" title="Link to this heading"></a></h2>
+<p>Documentation for helper functions that can be used in distributed mode, particularly when using MPI without <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/index.html" title="(in MPI for Python v4.0)"><span class="xref std std-doc">mpi4py</span></a>.
+See <a class="reference internal" href="distributed_daal4py.html#distributed-daal4py"><span class="std std-ref">Distributed mode (daal4py, CPU)</span></a> for examples.</p>
+</section>
+<section id="model-builders-gbt-and-logreg-serving">
+<span id="model-builders-docs"></span><h2>Model builders (GBT and LogReg serving)<a class="headerlink" href="#model-builders-gbt-and-logreg-serving" title="Link to this heading"></a></h2>
+<p>Documentation for model builders, which allow computing fast predictions from GBT
+(gradient-boosted decision tree) models produced by other libraries. See article
+<a class="reference internal" href="model_builders.html#model-builders"><span class="std std-ref">Serving GBT models from other libraries</span></a> for examples.</p>
+</section>
+<section id="classification">
+<h2>Classification<a class="headerlink" href="#classification" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All classification algorithms produce a result object of the same class, containing
+predicted probabilities, logarithm of the predicted probabilities, and most probable
+class.</p>
+</div>
+<section id="results-class">
+<h3>Results class<a class="headerlink" href="#results-class" title="Link to this heading"></a></h3>
+</section>
+<section id="decision-forest-classification">
+<h3>Decision Forest Classification<a class="headerlink" href="#decision-forest-classification" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/decision_forest/decision-forest-classification.html">oneAPI Data Analytics Library Classification Decision Forest</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/decision_forest_classification_default_dense.py">Single-Process Decision Forest Classification Default Dense method</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/decision_forest_classification_hist.py">Single-Process Decision Forest Classification Histogram method</a></p></li>
+</ul>
+</section>
+<section id="decision-tree-classification">
+<h3>Decision Tree Classification<a class="headerlink" href="#decision-tree-classification" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/decision_tree/decision-tree-classification.html">oneAPI Data Analytics Library Classification Decision Tree</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/decision_tree_classification.py">Single-Process Decision Tree Classification</a></p></li>
+</ul>
+</section>
+<section id="gradient-boosted-classification">
+<h3>Gradient Boosted Classification<a class="headerlink" href="#gradient-boosted-classification" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/gradient_boosted_trees/gradient-boosted-trees-classification.html">oneAPI Data Analytics Library Classification Gradient Boosted Tree</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/gradient_boosted_classification.py">Single-Process Gradient Boosted Classification</a></p></li>
+</ul>
+</section>
+<section id="k-nearest-neighbors-knn">
+<h3>k-Nearest Neighbors (kNN)<a class="headerlink" href="#k-nearest-neighbors-knn" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/k_nearest_neighbors/k-nearest-neighbors-knn-classifier.html">oneAPI Data Analytics Library k-Nearest Neighbors (kNN)</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/kdtree_knn_classification.py">Single-Process kNN</a></p></li>
+</ul>
+</section>
+<section id="brute-force-k-nearest-neighbors-knn">
+<h3>Brute-force k-Nearest Neighbors (kNN)<a class="headerlink" href="#brute-force-k-nearest-neighbors-knn" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/k_nearest_neighbors/k-nearest-neighbors-knn-classifier.html">oneAPI Data Analytics Library k-Nearest Neighbors (kNN)</a>.</p>
+</section>
+<section id="adaboost-classification">
+<h3>AdaBoost Classification<a class="headerlink" href="#adaboost-classification" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/boosting/adaboost.html">oneAPI Data Analytics Library Classification AdaBoost</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/adaboost.py">Single-Process AdaBoost Classification</a></p></li>
+</ul>
+</section>
+<section id="brownboost-classification">
+<h3>BrownBoost Classification<a class="headerlink" href="#brownboost-classification" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/boosting/brownboost.html">oneAPI Data Analytics Library Classification BrownBoost</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/brownboost.py">Single-Process BrownBoost Classification</a></p></li>
+</ul>
+</section>
+<section id="logitboost-classification">
+<h3>LogitBoost Classification<a class="headerlink" href="#logitboost-classification" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/boosting/logitboost.html">oneAPI Data Analytics Library Classification LogitBoost</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/logitboost.py">Single-Process LogitBoost Classification</a></p></li>
+</ul>
+</section>
+<section id="stump-weak-learner-classification">
+<h3>Stump Weak Learner Classification<a class="headerlink" href="#stump-weak-learner-classification" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/stump/classification.html">oneAPI Data Analytics Library Classification Weak Learner Stump</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/stump_classification.py">Single-Process Stump Weak Learner Classification</a></p></li>
+</ul>
+</section>
+<section id="multinomial-naive-bayes">
+<h3>Multinomial Naive Bayes<a class="headerlink" href="#multinomial-naive-bayes" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/naive_bayes/naive-bayes-classifier.html">oneAPI Data Analytics Library Naive Bayes</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/naive_bayes.py">Single-Process Naive Bayes</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/naive_bayes_streaming.py">Streaming Naive Bayes</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/naive_bayes_spmd.py">Multi-Process Naive Bayes</a></p></li>
+</ul>
+</section>
+<section id="support-vector-machine-svm">
+<h3>Support Vector Machine (SVM)<a class="headerlink" href="#support-vector-machine-svm" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/svm/support-vector-machine-classifier.html">oneAPI Data Analytics Library SVM</a>.</p>
+<p>Note: For the labels parameter, data is formatted as -1s and 1s</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/svm.py">Single-Process SVM</a></p></li>
+</ul>
+</section>
+<section id="logistic-regression">
+<h3>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/logistic_regression/logistic-regression.html">oneAPI Data Analytics Library Logistic Regression</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/log_reg_binary_dense.py">Single-Process Binary Class Logistic Regression</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/log_reg_dense.py">Single-Process Logistic Regression</a></p></li>
+</ul>
+</section>
+</section>
+<section id="regression">
+<h2>Regression<a class="headerlink" href="#regression" title="Link to this heading"></a></h2>
+<section id="decision-forest-regression">
+<h3>Decision Forest Regression<a class="headerlink" href="#decision-forest-regression" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/decision_forest/decision-forest-regression.html">oneAPI Data Analytics Library Regression Decision Forest</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/decision_forest_regression_default_dense.py">Single-Process Decision Forest Regression Default Dense method</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/decision_forest_regression_hist.py">Single-Process Decision Forest Regression Histogram method</a></p></li>
+</ul>
+</section>
+<section id="decision-tree-regression">
+<h3>Decision Tree Regression<a class="headerlink" href="#decision-tree-regression" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/decision_tree/decision-tree-regression.html">oneAPI Data Analytics Library Regression Decision Tree</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/decision_tree_regression.py">Single-Process Decision Tree Regression</a></p></li>
+</ul>
+</section>
+<section id="gradient-boosted-regression">
+<h3>Gradient Boosted Regression<a class="headerlink" href="#gradient-boosted-regression" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/gradient_boosted_trees/gradient-boosted-trees-regression.html">oneAPI Data Analytics Library Regression Gradient Boosted Tree</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/gradient_boosted_regression.py">Single-Process Boosted Regression Regression</a></p></li>
+</ul>
+</section>
+<section id="linear-regression">
+<h3>Linear Regression<a class="headerlink" href="#linear-regression" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/linear_ridge_regression/linear-regression.html">oneAPI Data Analytics Library Linear Regression</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/linear_regression.py">Single-Process Linear Regression</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/linear_regression_streaming.py">Streaming Linear Regression</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/linear_regression_spmd.py">Multi-Process Linear Regression</a></p></li>
+</ul>
+</section>
+<section id="lasso-regression">
+<h3>LASSO Regression<a class="headerlink" href="#lasso-regression" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/lasso_elastic_net/lasso.html">oneAPI Data Analytics Library Least Absolute Shrinkage and Selection Operator</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/lasso_regression.py">Single-Process LASSO Regression</a></p></li>
+</ul>
+</section>
+<section id="ridge-regression">
+<h3>Ridge Regression<a class="headerlink" href="#ridge-regression" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/linear_ridge_regression/ridge-regression.html">oneAPI Data Analytics Library Ridge Regression</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/ridge_regression.py">Single-Process Ridge Regression</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/ridge_regression_streaming.py">Streaming Ridge Regression</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/ridge_regression_spmd.py">Multi-Process Ridge Regression</a></p></li>
+</ul>
+</section>
+<section id="stump-regression">
+<h3>Stump Regression<a class="headerlink" href="#stump-regression" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/stump/regression.html">oneAPI Data Analytics Library Regression Stump</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/stump_regression.py">Single-Process Stump Regression</a></p></li>
+</ul>
+</section>
+</section>
+<section id="clustering">
+<h2>Clustering<a class="headerlink" href="#clustering" title="Link to this heading"></a></h2>
+<section id="k-means-clustering">
+<h3>K-Means Clustering<a class="headerlink" href="#k-means-clustering" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/kmeans/k-means-clustering.html">oneAPI Data Analytics Library K-Means Clustering</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/kmeans.py">Single-Process K-Means</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/kmeans_spmd.py">Multi-Process K-Means</a></p></li>
+</ul>
+</section>
+<section id="k-means-initialization">
+<h3>K-Means Initialization<a class="headerlink" href="#k-means-initialization" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/kmeans/k-means-clustering.html#initialization">oneAPI Data Analytics Library K-Means Initialization</a>.</p>
+</section>
+<section id="k-means">
+<h3>K-Means<a class="headerlink" href="#k-means" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/kmeans/k-means-clustering.html#computation">oneAPI Data Analytics Library K-Means Computation</a>.</p>
+</section>
+<section id="dbscan">
+<h3>DBSCAN<a class="headerlink" href="#dbscan" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/dbscan/index.html">oneAPI Data Analytics Library Density-Based Spatial Clustering of Applications with Noise</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/dbscan.py">Single-Process DBSCAN</a></p></li>
+</ul>
+</section>
+<section id="gaussian-mixtures">
+<h3>Gaussian Mixtures<a class="headerlink" href="#gaussian-mixtures" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/em/expectation-maximization.html">oneAPI Data Analytics Library Expectation-Maximization</a>.</p>
+<section id="initialization-for-the-gaussian-mixture-model">
+<h4>Initialization for the Gaussian Mixture Model<a class="headerlink" href="#initialization-for-the-gaussian-mixture-model" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/em/expectation-maximization.html#initialization">oneAPI Data Analytics Library Expectation-Maximization Initialization</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/em_gmm.py">Single-Process Expectation-Maximization</a></p></li>
+</ul>
+</section>
+<section id="em-algorithm-for-the-gaussian-mixture-model">
+<h4>EM algorithm for the Gaussian Mixture Model<a class="headerlink" href="#em-algorithm-for-the-gaussian-mixture-model" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/em/expectation-maximization.html#em-algorithm-for-the-gaussian-mixture-model">oneAPI Data Analytics Library Expectation-Maximization for the Gaussian Mixture Model</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/em_gmm.py">Single-Process Expectation-Maximization</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="dimensionality-reduction">
+<h2>Dimensionality reduction<a class="headerlink" href="#dimensionality-reduction" title="Link to this heading"></a></h2>
+<section id="principal-component-analysis-pca">
+<h3>Principal Component Analysis (PCA)<a class="headerlink" href="#principal-component-analysis-pca" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/pca/principal-component-analysis.html">oneAPI Data Analytics Library PCA</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/pca.py">Single-Process PCA</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/pca_spmd.py">Multi-Process PCA</a></p></li>
+</ul>
+</section>
+<section id="principal-component-analysis-pca-transform">
+<h3>Principal Component Analysis (PCA) Transform<a class="headerlink" href="#principal-component-analysis-pca-transform" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/pca/transform.html">oneAPI Data Analytics Library PCA Transform</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/pca_transform.py">Single-Process PCA Transform</a></p></li>
+</ul>
+</section>
+</section>
+<section id="outlier-detection">
+<h2>Outlier detection<a class="headerlink" href="#outlier-detection" title="Link to this heading"></a></h2>
+<section id="multivariate-outlier-detection">
+<h3>Multivariate Outlier Detection<a class="headerlink" href="#multivariate-outlier-detection" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/outlier_detection/multivariate.html">oneAPI Data Analytics Library Multivariate Outlier Detection</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/multivariate_outlier.py">Single-Process Multivariate Outlier Detection</a></p></li>
+</ul>
+</section>
+<section id="univariate-outlier-detection">
+<h3>Univariate Outlier Detection<a class="headerlink" href="#univariate-outlier-detection" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/outlier_detection/univariate.html">oneAPI Data Analytics Library Univariate Outlier Detection</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/univariate_outlier.py">Single-Process Univariate Outlier Detection</a></p></li>
+</ul>
+</section>
+<section id="multivariate-bacon-outlier-detection">
+<h3>Multivariate Bacon Outlier Detection<a class="headerlink" href="#multivariate-bacon-outlier-detection" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/outlier_detection/multivariate-bacon.html">oneAPI Data Analytics Library Multivariate Bacon Outlier Detection</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/bacon_outlier.py">Single-Process Bacon Outlier Detection</a></p></li>
+</ul>
+</section>
+</section>
+<section id="optimization-solvers">
+<h2>Optimization Solvers<a class="headerlink" href="#optimization-solvers" title="Link to this heading"></a></h2>
+<section id="objective-functions">
+<h3>Objective Functions<a class="headerlink" href="#objective-functions" title="Link to this heading"></a></h3>
+<section id="mean-squared-error-algorithm-mse">
+<h4>Mean Squared Error Algorithm (MSE)<a class="headerlink" href="#mean-squared-error-algorithm-mse" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/optimization-solvers/objective-functions/mse.html">oneAPI Data Analytics Library MSE</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/adagrad_mse.py">In Adagrad</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/lbfgs_mse.py">In LBFGS</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/sgd_mse.py">In SGD</a></p></li>
+</ul>
+</section>
+<section id="logistic-loss">
+<h4>Logistic Loss<a class="headerlink" href="#logistic-loss" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/optimization-solvers/objective-functions/logistic-loss.html">oneAPI Data Analytics Library Logistic Loss</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/sgd_logistic_loss.py">In SGD</a></p></li>
+</ul>
+</section>
+<section id="cross-entropy-loss">
+<h4>Cross-entropy Loss<a class="headerlink" href="#cross-entropy-loss" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/optimization-solvers/objective-functions/cross-entropy.html">oneAPI Data Analytics Library Cross Entropy Loss</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/lbfgs_cr_entr_loss.py">In LBFGS</a></p></li>
+</ul>
+</section>
+<section id="sum-of-functions">
+<h4>Sum of Functions<a class="headerlink" href="#sum-of-functions" title="Link to this heading"></a></h4>
+</section>
+</section>
+<section id="iterative-solvers">
+<h3>Iterative Solvers<a class="headerlink" href="#iterative-solvers" title="Link to this heading"></a></h3>
+<section id="stochastic-gradient-descent-algorithm">
+<h4>Stochastic Gradient Descent Algorithm<a class="headerlink" href="#stochastic-gradient-descent-algorithm" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/optimization-solvers/solvers/stochastic-gradient-descent-algorithm.html">oneAPI Data Analytics Library SGD</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/sgd_logistic_loss.py">Using Logistic Loss</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/sgd_mse.py">Using MSE</a></p></li>
+</ul>
+</section>
+<section id="limited-memory-broyden-fletcher-goldfarb-shanno-algorithm">
+<h4>Limited-Memory Broyden-Fletcher-Goldfarb-Shanno Algorithm<a class="headerlink" href="#limited-memory-broyden-fletcher-goldfarb-shanno-algorithm" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/optimization-solvers/solvers/limited-memory-broyden-fletcher-goldfarb-shanno-algorithm.html">oneAPI Data Analytics Library LBFGS</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/lbfgs_mse.py">Using MSE</a></p></li>
+</ul>
+</section>
+<section id="adaptive-subgradient-method">
+<h4>Adaptive Subgradient Method<a class="headerlink" href="#adaptive-subgradient-method" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/optimization-solvers/solvers/adaptive-subgradient-method.html">oneAPI Data Analytics Library AdaGrad</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/adagrad_mse.py">Using MSE</a></p></li>
+</ul>
+</section>
+<section id="stochastic-average-gradient-descent">
+<h4>Stochastic Average Gradient Descent<a class="headerlink" href="#stochastic-average-gradient-descent" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/optimization-solvers/solvers/stochastic-average-gradient-accelerated-method.html">oneAPI Data Analytics Library Stochastic Average Gradient Descent SAGA</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/saga.py">Single Proces saga-logistc_loss</a></p></li>
+</ul>
+</section>
+<section id="coordinate-descent">
+<h4>Coordinate Descent<a class="headerlink" href="#coordinate-descent" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/optimization-solvers/solvers/coordinate-descent.html">oneAPI Data Analytics Library Coordinate Descent Algorithm</a>.</p>
+</section>
+<section id="precomputed-function">
+<h4>Precomputed Function<a class="headerlink" href="#precomputed-function" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/optimization-solvers/objective-functions/with-precomputed-characteristics.html">oneAPI Data Analytics Library Objective Function with Precomputed Characteristics</a>.</p>
+</section>
+</section>
+</section>
+<section id="recommender-systems">
+<h2>Recommender systems<a class="headerlink" href="#recommender-systems" title="Link to this heading"></a></h2>
+<section id="association-rules">
+<h3>Association Rules<a class="headerlink" href="#association-rules" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/association_rules/association-rules.html">oneAPI Data Analytics Library Association Rules</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/association_rules.py">Single-Process Association Rules</a></p></li>
+</ul>
+</section>
+<section id="implicit-alternating-least-squares-implicit-als">
+<h3>Implicit Alternating Least Squares (implicit ALS)<a class="headerlink" href="#implicit-alternating-least-squares-implicit-als" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/implicit_als/implicit-alternating-least-squares.html">oneAPI Data Analytics Library Implicit Alternating Least Squares</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/implicit_als.py">Single-Process implicit ALS</a></p></li>
+</ul>
+</section>
+</section>
+<section id="covariance-correlation-and-distances">
+<h2>Covariance, correlation, and distances<a class="headerlink" href="#covariance-correlation-and-distances" title="Link to this heading"></a></h2>
+<section id="cosine-distance-matrix">
+<h3>Cosine Distance Matrix<a class="headerlink" href="#cosine-distance-matrix" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/distance/cosine.html">oneAPI Data Analytics Library Cosine Distance</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/cosine_distance.py">Single-Process Cosine Distance</a></p></li>
+</ul>
+</section>
+<section id="correlation-distance-matrix">
+<h3>Correlation Distance Matrix<a class="headerlink" href="#correlation-distance-matrix" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/distance/correlation.html">oneAPI Data Analytics Library Correlation Distance</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/correlation_distance.py">Single-Process Correlation Distance</a></p></li>
+</ul>
+</section>
+<section id="correlation-and-variance-covariance-matrices">
+<h3>Correlation and Variance-Covariance Matrices<a class="headerlink" href="#correlation-and-variance-covariance-matrices" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/covariance/correlation-and-variance-covariance-matrices.html">oneAPI Data Analytics Library Correlation and Variance-Covariance Matrices</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/covariance.py">Single-Process Covariance</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/covariance_streaming.py">Streaming Covariance</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/covariance_spmd.py">Multi-Process Covariance</a></p></li>
+</ul>
+</section>
+</section>
+<section id="data-pre-processing">
+<h2>Data pre-processing<a class="headerlink" href="#data-pre-processing" title="Link to this heading"></a></h2>
+<section id="normalization">
+<h3>Normalization<a class="headerlink" href="#normalization" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/normalization/index.html">oneAPI Data Analytics Library Normalization</a>.</p>
+<section id="z-score">
+<h4>Z-Score<a class="headerlink" href="#z-score" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/normalization/z-score.html">oneAPI Data Analytics Library Z-Score</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/normalization_zscore.py">Single-Process Z-Score Normalization</a></p></li>
+</ul>
+</section>
+<section id="min-max">
+<h4>Min-Max<a class="headerlink" href="#min-max" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/normalization/min-max.html">oneAPI Data Analytics Library Min-Max</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/normalization_minmax.py">Single-Process Min-Max Normalization</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="statistics">
+<h2>Statistics<a class="headerlink" href="#statistics" title="Link to this heading"></a></h2>
+<section id="moments-of-low-order">
+<h3>Moments of Low Order<a class="headerlink" href="#moments-of-low-order" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/moments/moments-of-low-order.html">oneAPI Data Analytics Library Moments of Low Order</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/low_order_moms_dense.py">Single-Process Low Order Moments</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/low_order_moms_streaming.py">Streaming Low Order Moments</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/low_order_moms_spmd.py">Multi-Process Low Order Moments</a></p></li>
+</ul>
+</section>
+<section id="quantiles">
+<h3>Quantiles<a class="headerlink" href="#quantiles" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/quantiles/index.html">oneAPI Data Analytics Library Quantiles</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/quantiles.py">Single-Process Quantiles</a></p></li>
+</ul>
+</section>
+</section>
+<section id="linear-algebra">
+<h2>Linear algebra<a class="headerlink" href="#linear-algebra" title="Link to this heading"></a></h2>
+<section id="cholesky-decomposition">
+<h3>Cholesky Decomposition<a class="headerlink" href="#cholesky-decomposition" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/cholesky/cholesky.html">oneAPI Data Analytics Library Cholesky Decomposition</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/cholesky.py">Single-Process Cholesky</a></p></li>
+</ul>
+</section>
+<section id="qr-decomposition">
+<h3>QR Decomposition<a class="headerlink" href="#qr-decomposition" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/qr/qr-decomposition.html">oneAPI Data Analytics Library QR Decomposition</a>.</p>
+<section id="qr-decomposition-without-pivoting">
+<h4>QR Decomposition (without pivoting)<a class="headerlink" href="#qr-decomposition-without-pivoting" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/qr/qr-without-pivoting.html">oneAPI Data Analytics Library QR Decomposition without pivoting</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/qr.py">Single-Process QR</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/qr_streaming.py">Streaming QR</a></p></li>
+</ul>
+</section>
+<section id="pivoted-qr-decomposition">
+<h4>Pivoted QR Decomposition<a class="headerlink" href="#pivoted-qr-decomposition" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/qr/qr-pivoted.html">oneAPI Data Analytics Library Pivoted QR Decomposition</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/pivoted_qr.py">Single-Process Pivoted QR</a></p></li>
+</ul>
+</section>
+</section>
+<section id="singular-value-decomposition-svd">
+<h3>Singular Value Decomposition (SVD)<a class="headerlink" href="#singular-value-decomposition-svd" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/svd/singular-value-decomposition.html">oneAPI Data Analytics Library SVD</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/svd.py">Single-Process SVD</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/svd_streaming.py">Streaming SVD</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/svd_spmd.py">Multi-Process SVD</a></p></li>
+</ul>
+</section>
+</section>
+<section id="random-number-generation">
+<h2>Random number generation<a class="headerlink" href="#random-number-generation" title="Link to this heading"></a></h2>
+<section id="random-number-engines">
+<h3>Random Number Engines<a class="headerlink" href="#random-number-engines" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/engines/index.html">oneAPI Data Analytics Library Engines</a>.</p>
+<section id="mt19937">
+<h4>mt19937<a class="headerlink" href="#mt19937" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/engines/mt19937.html">oneAPI Data Analytics Library mt19937</a>.</p>
+</section>
+<section id="mt2203">
+<h4>mt2203<a class="headerlink" href="#mt2203" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/engines/mt2203.html">oneAPI Data Analytics Library mt2203</a>.</p>
+</section>
+<section id="mcg59">
+<h4>mcg59<a class="headerlink" href="#mcg59" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/engines/mcg59.html">oneAPI Data Analytics Library mcg59</a>.</p>
+</section>
+<section id="mrg32k3a">
+<h4>mrg32k3a<a class="headerlink" href="#mrg32k3a" title="Link to this heading"></a></h4>
+</section>
+<section id="philox4x32x10">
+<h4>philox4x32x10<a class="headerlink" href="#philox4x32x10" title="Link to this heading"></a></h4>
+</section>
+</section>
+<section id="distributions">
+<h3>Distributions<a class="headerlink" href="#distributions" title="Link to this heading"></a></h3>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/distributions/index.html">oneAPI Data Analytics Library Distributions</a>.</p>
+<section id="bernoulli">
+<h4>Bernoulli<a class="headerlink" href="#bernoulli" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/distributions/bernoulli.html">oneAPI Data Analytics Library Bernoulli Distribution</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/distributions_bernoulli.py">Single-Process Bernoulli Distribution</a></p></li>
+</ul>
+</section>
+<section id="normal">
+<h4>Normal<a class="headerlink" href="#normal" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/distributions/normal.html">oneAPI Data Analytics Library Normal Distribution</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/distributions_normal.py">Single-Process Normal Distribution</a></p></li>
+</ul>
+</section>
+<section id="uniform">
+<h4>Uniform<a class="headerlink" href="#uniform" title="Link to this heading"></a></h4>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/distributions/uniform.html">oneAPI Data Analytics Library Uniform Distribution</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/distributions_uniform.py">Single-Process Uniform Distribution</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="sorting">
+<h2>Sorting<a class="headerlink" href="#sorting" title="Link to this heading"></a></h2>
+<p>Parameters and semantics are described in <a class="reference external" href="https://uxlfoundation.github.io/oneDAL/daal/algorithms/sorting/index.html">oneAPI Data Analytics Library Sorting</a>.</p>
+<p class="rubric">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/scikit-learn-intelex/tree/main/examples/daal4py/sorting.py">Single-Process Sorting</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="about_daal4py.html" class="btn btn-neutral float-left" title="About daal4py" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="guide/acceleration.html" class="btn btn-neutral float-right" title="Tuning Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+<jinja2.runtime.BlockReference object at 0x7efefd2bb310>
+<a href=
+    "https://www.intel.com/content/www/us/en/privacy/intel-cookie-notice.html" data-cookie-notice="true">
+    Cookies
+</a>
+<a href=
+    "https://www.intel.com/content/www/us/en/privacy/intel-privacy-notice.html">
+    Privacy
+</a>
+<a data-wap_ref="dns" id="wap_dns" href="https://www.intel.com/content/www/us/en/privacy/intel-cookie-notice.html">
+    Do Not Share My Personal Information
+</a>
+
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="version-switcher__container dropdown">
+    <script>
+      current_version = "2028.4"
+      project_name = "scikit-learn-intelex"
+    </script>
+    <div id="version-switcher-button"
+      class="version-switcher__button"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="version-switcher-dropdown"
+      aria-label="Version switcher list"
+      style="display:inline-block;padding-left:10px;padding-right:10px;"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </div>
+    <div id="version-switcher-dropdown"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
