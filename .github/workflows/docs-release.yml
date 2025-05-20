@@ -20,6 +20,10 @@ on:
     tags:
       - '[0-9][0-9][0-9][0-9]\.[0-9][0-9]?\.[0-9]' # Trigger on tag pushes
   workflow_dispatch:
+    inputs:
+      doc_version:
+        description: 'Tag version (e.g. 2024.10.0)'
+        required: true
 
 permissions: read-all
 
@@ -52,7 +56,13 @@ jobs:
 
     - name: Extract Tag Version
       run: |
-        export DOC_VERSION="${GITHUB_REF#refs/tags/}"
+        if [ -n "${{ github.event.inputs.doc_version }}" ]; then
+          export DOC_VERSION="${{ github.event.inputs.doc_version }}"
+          echo "Manual dispatch detected with version: $DOC_VERSION"
+        else
+          export DOC_VERSION="${GITHUB_REF#refs/tags/}"
+          echo "Tag trigger detected with version: $DOC_VERSION"
+        fi
         # Error out if cannot find version
         if [ -z "$DOC_VERSION" ]; then
           echo "::error: Failed to determine documentation version."
